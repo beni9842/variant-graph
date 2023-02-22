@@ -3,6 +3,7 @@
 
 # build
 main
+variant_graph
 graph.o
 
 # data

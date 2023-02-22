@@ -6,6 +6,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <chrono>
 
 std::vector<Set> readFile(std::string &filename) {
     std::ifstream input_file(filename);
@@ -57,21 +58,32 @@ int main(int argc, char **argv) {
     std::cout << "Attempting to read from file " << input_filename << "..." << std::endl;
     std::vector<Set> sets = readFile(input_filename);
     std::cout << "Assembling graph..." << std::endl;
-    Graph basic_graph, tree_graph;
-    //basic_graph.SortedInsert(sets);
-    tree_graph.TreeInsert(sets);
+
+    // graph construction
+    auto start = std::chrono::high_resolution_clock::now();
+    Graph g;
+    g.TreeInsert(sets);
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
+    std::cout << "Graph constructed in " << duration.count() << "ms." << std::endl;
+
     std::cout << "Retrieving adjacency lists..." << std::endl;
-    AdjList basic_output_list = basic_graph.getAdjList();
-    AdjList tree_output_list = tree_graph.getAdjList();
-    std::cout << "Writing to output files..." << std::endl;
-    std::stringstream basic_ss, tree_ss;
-    basic_ss << output_filename << ".basic";
-    std::string basic_filename = basic_ss.str();
-    tree_ss << output_filename << ".tree";
-    std::string tree_filename = tree_ss.str();
-    writeFile(basic_filename, basic_output_list);
-    writeFile(tree_filename, tree_output_list);
-    std::cout << basic_graph.checkGraph() << tree_graph.checkGraph() << std::endl;
+    AdjList output_list = g.getAdjList();
+    std::cout << "Writing to output file..." << std::endl;
+    writeFile(output_filename, output_list);
+
+    std::cout << "Would you like to confirm that the output graph is an MSG? (y/n) ";
+    std::string input;
+    std::cin >> input;
+    if (input[0] == 'y' || input[0] == 'Y') {
+        bool isMSG =  g.checkGraph();
+        if (isMSG) {
+            std::cout << "Correctly outputted a MSG." << std::endl;
+        } else {
+            std::cout << "Output is not a valid MSG." << std::endl;
+        }
+    }
     // variant_graph.printGraph();
     return 0;
 }
