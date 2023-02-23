@@ -28,5 +28,5 @@ A Minimum Superset Graph (MSG) is the data structure that will house the variant
     1. if C is superset of N:
         1. recursiveInsert(C, N)
         2. quit
-    2. add N to the adjacency list for P
+2. add N to the adjacency list for P
     
