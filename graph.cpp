@@ -43,9 +43,29 @@ void Graph::TreeInsert(std::vector<Set> sets) {
     });
 
     Node *root = new Node({});
+    Node *new_node;
+    std::vector<Node*> parents, children;
     for (const Set &set : sets) {
-        Node *new_node = new Node(set);
-        recursiveInsert(root, new_node);
+        new_node = new Node(set);
+        parents = { root };
+        bool parentFound = false;
+        while(!parentFound) {
+            parentFound = true;
+            for (auto it = parents.begin(); it != parents.end(); it++) {
+                Node *parent = *it;
+                for (Node *child : parent->adj) {
+                    if (isSuperset(child->set, set)) {
+                        parents.erase(it);
+                        parents.push_back(child);
+                        parentFound = false;
+                        break;
+                    }
+                }
+            }
+        }
+        for (Node *parent : parents) {
+            parent->adj.push_back(new_node);
+        }
         nodes.push_back(new_node);
     }
 }
