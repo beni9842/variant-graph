@@ -36,7 +36,7 @@ void Graph::SortedInsert(std::vector<Set> sets) {
     }
 }
 
-void Graph::TreeInsert(std::vector<Set> sets) {
+void Graph::MSGInsert(std::vector<Set> sets) {
     nodes = {};
     std::sort(sets.begin(), sets.end(), [](const Set &a, const Set &b) {
         return a.size() < b.size();
