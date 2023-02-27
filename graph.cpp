@@ -3,23 +3,23 @@
 #include <iostream>
 
 
-void Graph::SortedInsert(std::vector<Set> sets) {
-    nodes = {};
-    std::sort(sets.begin(), sets.end(), [](const Set &a, const Set &b) {
-        return a.size() < b.size();
-    });
+// void Graph::SortedInsert(std::vector<Set> sets) {
+//     nodes = {};
+//     std::sort(sets.begin(), sets.end(), [](const Set &a, const Set &b) {
+//         return a.size() < b.size();
+//     });
 
-    for (const Set &set : sets) {
-        Node *new_node = new Node(set);
-        for (int i = nodes.size()-1; i >= 0; i--) {
-            Node *old_node = nodes[i];
-            if (isMinimumSuperset(old_node->set, new_node->set)) {
-                old_node->adj.push_back(new_node);
-            }
-        }
-        nodes.push_back(new_node);
-    }
-}
+//     for (const Set &set : sets) {
+//         Node *new_node = new Node(set);
+//         for (int i = nodes.size()-1; i >= 0; i--) {
+//             Node *old_node = nodes[i];
+//             if (isMinimumSuperset(old_node->set, new_node->set)) {
+//                 old_node->adj.push_back(new_node);
+//             }
+//         }
+//         nodes.push_back(new_node);
+//     }
+// }
 
 void Graph::MSGInsert(std::vector<Set> sets) {
     nodes = {};

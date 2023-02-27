@@ -22,7 +22,7 @@ class Graph {
     public:
         Graph() { nodes = {}; };
         // void BasicInsert(std::vector<Set> sets);
-        void SortedInsert(std::vector<Set> sets);
+        // void SortedInsert(std::vector<Set> sets);
         void MSGInsert(std::vector<Set> sets);
         // void recursiveInsert(Node *parent, Node *new_node);
         static bool isSuperset(Set a, Set b);
