@@ -62,7 +62,7 @@ int main(int argc, char **argv) {
     // graph construction
     auto start = std::chrono::high_resolution_clock::now();
     Graph g;
-    g.TreeInsert(sets);
+    g.MSGInsert(sets);
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 
