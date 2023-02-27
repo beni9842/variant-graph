@@ -58,7 +58,6 @@ void Graph::MSGInsert(std::vector<Set> sets) {
                         parents.erase(it);
                         parents.push_back(child);
                         parentFound = false;
-                        break;
                     }
                 }
             }
