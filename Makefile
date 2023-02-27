@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS	= -std=c++17 -Wall -O3
+CXXFLAGS	= -std=c++17 -Wall -Ofast
 
 all: main
 
