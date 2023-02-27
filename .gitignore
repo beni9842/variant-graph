@@ -9,3 +9,6 @@ graph.o
 # data
 input/*
 output/*
+
+# README
+README.md
