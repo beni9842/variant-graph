@@ -24,13 +24,13 @@ class Graph {
         // void BasicInsert(std::vector<Set> sets);
         void SortedInsert(std::vector<Set> sets);
         void MSGInsert(std::vector<Set> sets);
-        void recursiveInsert(Node *parent, Node *new_node);
+        // void recursiveInsert(Node *parent, Node *new_node);
         static bool isSuperset(Set a, Set b);
         bool isMinimumSuperset(const Set &a, const Set &b);
-        static bool hasChildSuperset(Node *parent, Set set);
+        // static bool hasChildSuperset(Node *parent, Set set);
         AdjList getAdjList() const;
         void printGraph();
-        bool operator==(const Graph &g);
+        // bool operator==(const Graph &g);
         static std::string toString(Set s);
         bool checkGraph();
 };

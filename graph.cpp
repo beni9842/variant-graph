@@ -2,21 +2,6 @@
 #include <sstream>
 #include <iostream>
 
-// void Graph::BasicInsert(std::vector<Set> sets) {
-//     nodes = {};
-//     for (const Set &set : sets) {
-//         Node *new_node = new Node(set);
-//         for (Node *old_node : nodes) {
-//             if (isMinimumSuperset(old_node->set, new_node->set)) { // check if new_node is a superset of any existing sets
-//                 old_node->adj.push_back(new_node);
-//             } else if (isMinimumSuperset(new_node->set, old_node->set)) { // check if any existing sets are superset pf new_node
-//                 new_node->adj.push_back(old_node);
-//             }
-//         }
-//         nodes.push_back(new_node);
-//     } 
-// }
-
 
 void Graph::SortedInsert(std::vector<Set> sets) {
     nodes = {};
@@ -69,50 +54,7 @@ void Graph::MSGInsert(std::vector<Set> sets) {
     }
 }
 
-void Graph::recursiveInsert(Node *parent, Node *new_node) {
-    if (parent && new_node) {
-        for (Node *child : parent->adj) {
-            if (isSuperset(child->set, new_node->set)) {
-                return recursiveInsert(child, new_node);
-            }
-        }
-        parent->adj.push_back(new_node);
-    }
-    
-}
-
-bool Graph::hasChildSuperset(Node *parent, Set set) {
-    for (Node *child : parent->adj) {
-        if (isSuperset(child->set, set)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-
-// void Graph::insertNode(Node *parent, Node *new_node) {
-//     //given : new_node is a superset of parent
-//     bool leaf = true;
-//     for (Node *child : parent->adj) {
-//         if (isMinimumSuperset(child->set, new_node->set)) {
-//             leaf = false;
-//             insertNode(child, new_node);
-//         }
-//     }
-//         parent->adj.push_back(new_node);
-//     }
-// }
-
 bool Graph::isSuperset(Set a, Set b) {
-    // std::sort(a.begin(), a.end(), [](const int &x, const int &y) {
-    //     return x < y;
-    // });
-
-    // std::sort(b.begin(), b.end(), [](const int &x, const int &y) {
-    //     return x < y;
-    // });
-
     if (a.size() > b.size()) {
         return false;
     } else {
